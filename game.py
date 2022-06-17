@@ -14,7 +14,7 @@ tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('GAME')
 relogio = pygame.time.Clock()
 while True: 
-    relogio.tick(60)
+    relogio.tick(60) 
     tela.fill((0,0,0,))
     for event in pygame.event.get():
         if event.type == QUIT:
