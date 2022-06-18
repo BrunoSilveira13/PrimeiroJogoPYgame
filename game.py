@@ -8,7 +8,7 @@ pygame.init()
 largura = 640
 altura = 480
 x = largura /2
-y = 0
+y = altura /2
 
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('GAME')
@@ -20,9 +20,17 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             exit()
+
+    if pygame.key.get_pressed()[K_a]:
+        x = x - 15
+    if pygame.key.get_pressed()[K_d]:
+        x = x + 15
+    if pygame.key.get_pressed()[K_w]:
+        y = y - 15
+    if pygame.key.get_pressed()[K_s]:
+        y = y + 15
+
     pygame.draw.rect(tela, (255,0,0), (x,y,50,50))
-    if y >= altura:
-        y = 0
-    y = y + 5
+
 
     pygame.display.update()
