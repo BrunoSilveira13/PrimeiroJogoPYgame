@@ -1,8 +1,18 @@
-
+import os
 import pygame
 from pygame.locals import *
 from sys import exit
 from random import randint
+
+os.system('cls')
+nome = input('Nome > ')
+email = input('Email > ')
+arquivo = open('historicos.txt','a' )
+arquivo.write(f'Nome > {nome}\n')
+arquivo.write(f'Email > {email}\n')
+arquivo.write('\n')
+arquivo.close()
+
 pygame.init()
 
 pygame.mixer.music.set_volume(0.3)
@@ -12,7 +22,10 @@ pygame.mixer.music.play(-1)
 son_colisao = pygame.mixer.Sound('sons/son_moeda.wav')
 
 largura = 640
-altura = 480
+altura = 640
+
+bg = pygame.image.load('sprites/fundo.png')
+
 
 x_cobra = int(largura /2)
 y_cobra = int(altura /2)
@@ -30,6 +43,7 @@ pontos = 0
 
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('SNAKE GAME')
+
 relogio = pygame.time.Clock()
 
 lista_cobra = []
@@ -39,7 +53,7 @@ morreu = False
 
 def aumenta_combra(lista_cobra):
     for XeY in lista_cobra:
-        pygame.draw.rect(tela, (0,200,0), (XeY[0],XeY[1],20,20))
+        pygame.draw.rect(tela, (0, 146, 224), (XeY[0],XeY[1],20,20))
 def reiniciar_jogo():
     global pontos, comprimento_inicial, x_cobra, x_cobra, y_cobra, lista_cobra, lista_cabeca, x_maca, y_maca, morreu
     pontos = 0
@@ -54,7 +68,7 @@ def reiniciar_jogo():
 
 while True: 
     relogio.tick(30) 
-    tela.fill((255,255,255))
+    tela.blit(bg, (0,0))
     mensagem = f'Pontos: {pontos}'
     texto_formatado = fonte.render(mensagem, False, (0,0,0))
     for event in pygame.event.get():
@@ -94,7 +108,7 @@ while True:
     x_cobra = x_cobra + x_controle
     y_cobra = y_cobra + y_controle
 
-    cobra = pygame.draw.rect(tela, (0,200,0), (x_cobra,y_cobra,20,20))
+    cobra = pygame.draw.rect(tela, (0,0,180), (x_cobra,y_cobra,20,20))
     maca = pygame.draw.rect(tela, (200,0,0), (x_maca,y_maca,20,20))
 
     if cobra.colliderect(maca):
@@ -117,7 +131,7 @@ while True:
         ret_texto = texto_formatado.get_rect()
 
         morreu = True
-        tela.fill((255,255,255))
+        tela.blit(bg, (0,0))
         while morreu:
             for event in pygame.event.get():
                 if event.type == QUIT:
