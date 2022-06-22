@@ -1,4 +1,4 @@
-JOGO DA COBRINHA (SANKE) FEITO EM PYGAME.
+JOGO DA COBRINHA (SNAKE) FEITO EM PYGAME.
 Nome > Bruno Silveira Serena Benevenuto dos Santos.
 RA > 1129601
 
